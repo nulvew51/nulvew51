@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer & Server Creator</title>
+    <meta
+      name="description"
+      content="Portfolio développeur spécialisé dans les serveurs FiveM, Minecraft et projets GFN."
+    />
+    <style>
+      :root {
+        --bg: #070b12;
+        --bg-2: #0d141d;
+        --panel: rgba(16, 22, 31, 0.9);
+        --panel-strong: #111a25;
+        --line: rgba(148, 163, 184, 0.18);
+        --text: #e5edf8;
+        --muted: #9aa8bb;
+        --primary: #63a4ff;
+        --primary-2: #8b5cf6;
+        --accent: #5eead4;
+        --shadow: 0 10px 30px rgba(21, 27, 38, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(99, 164, 255, 0.12), transparent 25%),
+          radial-gradient(circle at top right, rgba(139, 92, 246, 0.10), transparent 35%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1170px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 0 0 16px;
+        letter-spacing: -0.05em;
+      }
+
+      .section-subtitle {
+        color: var(--muted);
+        margin: 0 auto 42px;
+        max-width: 720px;
+        text-align: center;
+      }
+
+      .glass {
+        background: rgba(17, 26, 37, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(18px);
+        background: rgba(7, 11, 18, 0.7);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 74px;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 0 24px rgba(99, 164, 255, 0.4);
+        font-size: 0.82rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.96rem;
+        transition: color 0.25s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--text);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid rgba(99, 164, 255, 0.32);
+        padding: 0.98rem 1.4rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(99, 164, 255, 0.1), rgba(139, 92, 246, 0.1));
+        color: var(--text);
+        font-weight: 600;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        box-shadow: 0 0 0 rgba(99, 164, 255, 0);
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(99, 164, 255, 0.6);
+        box-shadow: 0 10px 30px rgba(99, 164, 255, 0.16);
+      }
+
+      .hero {
+        min-height: calc(100vh - 74px);
+        display: grid;
+        place-items: center;
+        padding: 50px 0 20px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+        background: rgba(99, 164, 255, 0.08);
+        border: 1px solid rgba(99, 164, 255, 0.18);
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 0 12px rgba(99, 164, 255, 0.8);
+      }
+
+      h1 {
+        font-size: clamp(3rem, 6vw, 6rem);
+        line-height: 0.98;
+        letter-spacing: -0.07em;
+        margin: 0;
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, #dfeaff 0%, var(--primary) 28%, #c09dff 75%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.08rem;
+        max-width: 640px;
+        margin: 22px 0 30px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .mini-stats {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+
+      .mini-card {
+        padding: 16px 18px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(13, 20, 29, 0.7);
+      }
+
+      .mini-card strong {
+        display: block;
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+      }
+
+      .mini-card span {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .profile-panel {
+        position: relative;
+        padding: 20px;
+      }
+
+      .profile-glow {
+        position: absolute;
+        inset: 10% 18% auto auto;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(99, 164, 255, 0.46), transparent 60%);
+        filter: blur(18px);
+      }
+
+      .profile-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+        padding: 18px;
+        background: linear-gradient(180deg, rgba(18, 27, 38, 0.9), rgba(10, 15, 22, 0.95));
+        border: 1px solid var(--line);
+      }
+
+      .profile-image {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        border-radius: 22px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #1f2b39, #0d141d);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .profile-meta {
+        margin-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .profile-meta h3 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(22, 34, 27, 0.8);
+        border: 1px solid rgba(94, 234, 212, 0.25);
+        color: #98f8e2;
+        border-radius: 999px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.78rem;
+      }
+
+      .status::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #5eead4;
+        box-shadow: 0 0 12px #5eead4;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .projects-grid,
+      .social-grid,
+      .contact-grid {
+        display: grid;
+        gap: 28px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+
+      .about-card,
+      .skill-card,
+      .project-card,
+      .social-card,
+      .contact-card {
+        padding: 28px;
+      }
+
+      .about-copy p {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+
+      .about-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .pill {
+        padding: 0.68rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(99, 164, 255, 0.08);
+        border: 1px solid rgba(99, 164, 255, 0.18);
+        color: #dfeaff;
+        font-size: 0.82rem;
+      }
+
+      .about-side {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .metric {
+        padding: 22px 18px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(17, 22, 30, 0.7);
+      }
+
+      .metric strong {
+        display: block;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        line-height: 1;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .skill-card {
+        min-height: 240px;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .skill-card:hover,
+      .project-card:hover,
+      .social-card:hover,
+      .contact-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(99, 164, 255, 0.4);
+      }
+
+      .icon-box {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(99, 164, 255, 0.14), rgba(139, 92, 246, 0.14));
+        border: 1px solid rgba(99, 164, 255, 0.2);
+        margin-bottom: 18px;
+        color: #dfeaff;
+        font-size: 1.2rem;
+      }
+
+      .skill-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.2rem;
+      }
+
+      .skill-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .skill-tags span {
+        font-size: 0.74rem;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.45rem 0.7rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .project-card {
+        overflow: hidden;
+        padding: 0;
+      }
+
+      .project-image {
+        height: 220px;
+        background: linear-gradient(135deg, rgba(99, 164, 255, 0.22), rgba(139, 92, 246, 0.12)), #111827;
+        border-bottom: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .project-body {
+        padding: 24px 22px 26px;
+      }
+
+      .project-body h3 {
+        margin: 0 0 12px;
+        font-size: 1.28rem;
+      }
+
+      .project-body p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .project-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .tag {
+        border: 1px solid rgba(139, 92, 246, 0.25);
+        background: rgba(139, 92, 246, 0.08);
+        color: #dfd4ff;
+        border-radius: 999px;
+        padding: 0.42rem 0.8rem;
+        font-size: 0.72rem;
+      }
+
+      .project-link {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .social-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .social-card {
+        text-align: center;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .social-card .icon-box {
+        margin: 0 auto 16px;
+      }
+
+      .social-card h3 {
+        margin: 0 0 8px;
+      }
+
+      .social-card p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1.15fr;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 16px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(13, 20, 29, 0.6);
+      }
+
+      .contact-item .icon-box {
+        width: 42px;
+        height: 42px;
+        margin-bottom: 0;
+        font-size: 1rem;
+      }
+
+      .contact-item strong {
+        display: block;
+        font-size: 0.92rem;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+
+      .contact-item span {
+        font-size: 0.95rem;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      label {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(9, 14, 20, 0.8);
+        color: var(--text);
+        padding: 0.9rem 1rem;
+        font: inherit;
+        resize: vertical;
+        min-height: 52px;
+        outline: none;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: rgba(99, 164, 255, 0.6);
+        box-shadow: 0 0 0 3px rgba(99, 164, 255, 0.12);
+      }
+
+      textarea {
+        min-height: 150px;
+      }
+
+      footer {
+        padding: 24px 0 60px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .about-grid,
+        .contact-grid,
+        .skills-grid,
+        .projects-grid,
+        .social-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 40px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .nav {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 14px 0;
+        }
+
+        .nav-links {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .field-row,
+        .about-side {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 76px 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#home" class="brand" aria-label="Accueil">
+          <span class="brand-mark">D</span>
+          <span>DevServer</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="#home">Accueil</a>
+          <a href="#about">À propos</a>
+          <a href="#skills">Compétences</a>
+          <a href="#projects">Projets</a>
+          <a href="#social">Réseaux</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="button" href="#contact">Me contacter</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">Disponible pour des projets</div>
+            <h1>
+              Developer<br />
+              <span class="highlight">&amp; Server Creator</span>
+            </h1>
+            <p class="lead">
+              Je conçois et développe des serveurs <strong>FiveM</strong>, des environnements
+              <strong>Minecraft</strong> et des projets <strong>GFN</strong> avec une logique robuste,
+              un code propre et une expérience utilisateur premium.
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="#projects">Voir mes projets</a>
+              <a class="button" href="#about" style="background: transparent;">En savoir plus</a>
+            </div>
+            <div class="mini-stats" aria-label="statistiques clés">
+              <div class="mini-card">
+                <strong>5+</strong>
+                <span>Années de dev</span>
+              </div>
+              <div class="mini-card">
+                <strong>20+</strong>
+                <span>Projets créés</span>
+              </div>
+              <div class="mini-card">
+                <strong>24/7</strong>
+                <span>Passion &amp; créativité</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-panel">
+            <div class="profile-glow"></div>
+            <div class="profile-card glass">
+              <img
+                class="profile-image"
+                src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23c4061c'/%3E%3Cstop offset='0.5' stop-color='%239e0217'/%3E%3Cstop offset='1' stop-color='%2350000d'/%3E%3C/linearGradient%3E%3ClinearGradient id='skin' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f3f0f3'/%3E%3Cstop offset='1' stop-color='%23d4c9d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='900' height='1100' fill='url(%23bg)'/%3E%3Cg opacity='.35'%3E%3Ccircle cx='450' cy='180' r='230' fill='%23ff9ca8'/%3E%3Ccircle cx='520' cy='270' r='180' fill='%23ff6a7b'/%3E%3C/ g%3E%3Cg%3E%3Cpath d='M420 185c-170 18-281 111-286 268-6 180 92 292 246 327 64 14 137 14 202 0 142-35 239-144 235-299-4-180-132-279-397-296z' fill='%23f1f1f1'/%3E%3Cpath d='M370 240c-17-52-52-97-99-120 75-22 133-15 179 18 39 29 60 81 68 127 7 35 7 70-9 95-33-16-62-42-90-67-16-15-35-35-49-53z' fill='%23e5e5e5'/%3E%3Cpath d='M446 243c52-26 104-34 160-20 41 12 79 41 98 80 17 34 23 79 18 118-15-23-29-58-40-79-23-45-78-96-159-100-39-2-61 15-77 31 0-10 0-20 0-30z' fill='%23e4e4e4'/%3E%3Cpath d='M434 474c-86 11-152 62-177 120-39 92 14 205 94 232 79 27 164 6 214-62 52-70 58-156 10-214-41-49-84-74-141-76z' fill='url(%23skin)'/%3E%3Cpath d='M344 502c77-45 162-37 221 22 62 62 72 181 3 267-63 77-202 117-297 71-68-34-102-122-82-196 19-71 74-140 155-164z' fill='url(%23skin)' opacity='.95'/%3E%3Cg stroke='%230b0a12' stroke-linecap='round' stroke-width='18' fill='none'%3E%3Cpath d='M380 510c-34 4-60 25-71 51'/%3E%3Cpath d='M522 507c30 4 58 27 69 54'/%3E%3Cpath d='M374 525c-15-13-23-30-22-48'/%3E%3Cpath d='M528 525c15-13 23-30 22-49'/%3E%3C/g%3E%3Cg%3E%3Cpath d='M343 503c-52-24-102-38-145-34 19 50 52 82 109 94 22 5 39-4 53-17-4-16-10-30-17-43z' fill='%23f5f5f8'/%3E%3Cpath d='M548 501c52-24 102-38 145-34-19 50-52 82-109 94-22 5-39-4-53-17 4-16 10-30 17-43z' fill='%23f5f5f8'/%3E%3C/g%3E%3Cg fill='%230d0d12'%3E%3Cellipse cx='390' cy='540' rx='32' ry='22'/%3E%3Cellipse cx='510' cy='540' rx='32' ry='22'/%3E%3C/g%3E%3Cg stroke='%230d0d12' stroke-width='6' fill='none'%3E%3Cpath d='M394 569c24 18 59 20 86 2'/%3E%3Cpath d='M696 492c-16 34-58 73-104 95'/%3E%3Cpath d='M694 492c17 18 28 39 31 64'/%3E%3C/g%3E%3Cg%3E%3Cpath d='M336 647c34 50 62 60 99 68 40 9 66 3 101-37 10-12 25-32 31-51-18 12-61 27-108 28-62 1-115-8-123-8z' fill='%23f0eef0'/%3E%3C/g%3E%3Cg fill='%23252030'%3E%3Cpath d='M625 714c36 10 83 22 130 34 39 10 72 26 91 49 21 26 26 60 16 94-15 48-63 83-116 84-60 2-117-29-166-80-20-21-31-41-40-66 20-20 49-55 85-75z'/%3E%3C/g%3E%3Cg fill='%23fff'%3E%3Cpath d='M317 709c-31 16-61 44-85 83-22 36-38 80-41 119 22-16 53-32 93-42 39-11 86-12 132-9 16-50 7-93-30-120-25-22-40-28-69-31z'/%3E%3C/g%3E%3Cg fill='%230b0a12'%3E%3Cellipse cx='348' cy='743' rx='19' ry='15'/%3E%3Cellipse cx='323' cy='778' rx='16' ry='13'/%3E%3Cellipse cx='354' cy='815' rx='14' ry='12'/%3E%3C/g%3E%3Cg fill='%23f8f6f8'%3E%3Cpath d='M696 343c38 15 70 48 78 85 9 39-9 91-50 117-35 22-113 46-151 19-44-31-44-93-12-140 42-61 101-80 135-81z'/%3E%3C/g%3E%3Cg fill='%23f5f5f5'%3E%3Cpath d='M286 324c-39 22-60 58-58 100 1 44 25 88 69 112 58 33 176 36 215-25 32-49 7-100-33-138-24-23-58-44-92-48-31-5-68-6-101-1z'/%3E%3C/g%3E%3Cpath d='M454 757c-13 7-20 20-23 35-3 16 1 33 17 49 26 26 80 34 123 30 58-5 100-42 113-85 9-31 0-47-18-66-14-15-31-12-56-10-57 5-114 8-156-1z' fill='%23f4eff2' opacity='.72'/%3E%3Cpath d='M612 650c19-1 57 7 78 26 10 9 18 20 23 32 16-16 26-42 24-69-2-39-32-72-72-83-44-12-86 5-113 42 28 16 42 37 60 52z' fill='%23f0edf1' opacity='.8'/%3E%3Ccircle cx='154' cy='193' r='18' fill='%23ff7d8f' opacity='.7'/%3E%3Ccircle cx='770' cy='230' r='15' fill='%23ff7d8f' opacity='.6'/%3E%3Ccircle cx='233' cy='880' r='12' fill='%23ff7d8f' opacity='.7'/%3E%3Ccircle cx='660' cy='867' r='10' fill='%23ff7d8f' opacity='.6'/%3E%3C/g%3E%3C/svg%3E" alt="Portrait sombre de personnage fictif" />
+              <div class="profile-meta">
+                <h3>Mon pseudo</h3>
+                <span class="status">En ligne</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <h2 class="section-title" style="text-align: center;">À propos</h2>
+          <p class="section-subtitle">
+            Je suis un développeur passionné par la création d'environnements immersifs, de systèmes
+            performants et d'expériences sur mesure.
+          </p>
+
+          <div class="about-grid">
+            <div class="about-card glass about-copy">
+              <p>
+                Depuis plusieurs années, je développe des solutions autour des serveurs, de la logique
+                système, de l'automatisation et de l'optimisation. Mon objectif est simple : transformer
+                des idées en projets stables, élégants et fonctionnels.
+              </p>
+              <p>
+                J'aime concevoir des infrastructures complètes pour FiveM et Minecraft, en combinant
+                gameplay, code backend, scripts, gestion de ressources et expérience utilisateur.
+              </p>
+              <div class="about-pills">
+                <span class="pill">JavaScript</span>
+                <span class="pill">Node.js</span>
+                <span class="pill">FiveM</span>
+                <span class="pill">Minecraft</span>
+                <span class="pill">GFN</span>
+                <span class="pill">Scripting</span>
+              </div>
+            </div>
+
+            <div class="about-side">
+              <div class="metric glass">
+                <strong>+5</strong>
+                <span>ans d'expérience</span>
+              </div>
+              <div class="metric glass">
+                <strong>20+</strong>
+                <span>projets livrés</span>
+              </div>
+              <div class="metric glass">
+                <strong>100%</strong>
+                <span>code pensé pour le gameplay</span>
+              </div>
+              <div class="metric glass">
+                <strong>24/7</strong>
+                <span>motivation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="container">
+          <h2 class="section-title" style="text-align: center;">Compétences</h2>
+          <p class="section-subtitle">
+            J'utilise des langages et outils variés pour développer des systèmes techniques efficaces
+            et évolutifs.
+          </p>
+
+          <div class="skills-grid">
+            <article class="skill-card glass">
+              <div class="icon-box">JS</div>
+              <h3>JavaScript</h3>
+              <p>
+                Développement de scripts, logique serveur, automatisations et outils pour des projets
+                évolutifs.
+              </p>
+              <div class="skill-tags">
+                <span>ES6+</span>
+                <span>Node.js</span>
+                <span>Modules</span>
+              </div>
+            </article>
+
+            <article class="skill-card glass">
+              <div class="icon-box">FX</div>
+              <h3>FiveM</h3>
+              <p>
+                Création de ressources, systèmes gameplay, scripts de job, événements et intégration
+                serveur.
+              </p>
+              <div class="skill-tags">
+                <span>QBCore</span>
+                <span>ESX</span>
+                <span>Custom</span>
+              </div>
+            </article>
+
+            <article class="skill-card glass">
+              <div class="icon-box">MC</div>
+              <h3>Minecraft</h3>
+              <p>
+                Configuration de serveurs, plugins, gestion de mods, optimisation et mise en place de
+                gameplay unique.
+              </p>
+              <div class="skill-tags">
+                <span>Spigot</span>
+                <span>Paper</span>
+                <span>Config</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <h2 class="section-title" style="text-align: center;">Mes projets</h2>
+          <p class="section-subtitle">
+            Quelques réalisations que j'ai développées ou contribué à concevoir pour des communautés et
+            des projets ambitieux.
+          </p>
+
+          <div class="projects-grid">
+            <article class="project-card glass">
+              <div class="project-image">FiveM Server</div>
+              <div class="project-body">
+                <h3>Serveur FiveM personnalisé</h3>
+                <p>
+                  Système complet de jobs, véhicules, missions, gestion de joueurs et intégration de
+                  scripts sur mesure pour une expérience unique.
+                </p>
+                <div class="project-meta">
+                  <span class="tag">FiveM</span>
+                  <a class="project-link" href="#">Voir le projet</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card glass">
+              <div class="project-image">Minecraft Network</div>
+              <div class="project-body">
+                <h3>Réseau Minecraft</h3>
+                <p>
+                  Configuration de serveurs, optimisation, gestion de ressources et mise en place de mini-jeux
+                  et de systèmes de progression.
+                </p>
+                <div class="project-meta">
+                  <span class="tag">Minecraft</span>
+                  <a class="project-link" href="#">Voir le projet</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card glass">
+              <div class="project-image">GFN Project</div>
+              <div class="project-body">
+                <h3>Projet GFN / environnement personnalisé</h3>
+                <p>
+                  Création de configurations, outils et automatisations dédiés à des environnements de travail
+                  spécifiques et à des projets techniques complexes.
+                </p>
+                <div class="project-meta">
+                  <span class="tag">GFN</span>
+                  <a class="project-link" href="#">Voir le projet</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="social">
+        <div class="container">
+          <h2 class="section-title" style="text-align: center;">Mes réseaux</h2>
+          <p class="section-subtitle">
+            Retrouvez-moi ici pour suivre mes projets, mes mises à jour et mes collaborations.
+          </p>
+
+          <div class="social-grid">
+            <a class="social-card glass" href="https://www.tiktok.com/@w.hol" target="_blank" rel="noreferrer">
+              <div class="icon-box">TT</div>
+              <h3>TikTok</h3>
+              <p>@w.hol</p>
+            </a>
+            <a class="social-card glass" href="https://github.com/nulvew51" target="_blank" rel="noreferrer">
+              <div class="icon-box">GH</div>
+              <h3>GitHub</h3>
+              <p>@nulvew51</p>
+            </a>
+            <a class="social-card glass" href="https://discord.com/users/6hq6" target="_blank" rel="noreferrer">
+              <div class="icon-box">DC</div>
+              <h3>Discord</h3>
+              <p>6hq6</p>
+            </a>
+            <a class="social-card glass" href="#contact" rel="noreferrer">
+              <div class="icon-box">✦</div>
+              <h3>Contact</h3>
+              <p>Projet / collaboration</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <h2 class="section-title" style="text-align: center;">Contact</h2>
+          <p class="section-subtitle">
+            Envoyez-moi un message pour discuter d'un projet, d'une commande ou d'une collaboration.
+          </p>
+
+          <div class="contact-grid">
+            <div class="contact-card glass">
+              <div class="contact-list">
+                <div class="contact-item">
+                  <div class="icon-box">✉</div>
+                  <div>
+                    <strong>Email</strong>
+                    <span>monemail@example.com</span>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="icon-box">⌁</div>
+                  <div>
+                    <strong>Discord</strong>
+                    <span>6hq6</span>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="icon-box">⌂</div>
+                  <div>
+                    <strong>Site</strong>
+                    <span>nulvew.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-card glass">
+              <form action="#" method="post">
+                <div class="field-row">
+                  <div class="field">
+                    <label for="name">Nom</label>
+                    <input id="name" name="name" type="text" placeholder="Votre nom" />
+                  </div>
+                  <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="Votre email" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="subject">Sujet</label>
+                  <input id="subject" name="subject" type="text" placeholder="Objet du message" />
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Décrivez votre projet..."></textarea>
+                </div>
+
+                <button class="button" type="submit">Envoyer le message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2025 Mon pseudo — Developer &amp; Server Creator</div>
+    </footer>
+
+    <script>
+      document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Message envoyé';
+        button.disabled = true;
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.disabled = false;
+          this.reset();
+        }, 1800);
+      });
+    </script>
+  </body>
+</html>
